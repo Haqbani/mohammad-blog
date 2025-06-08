@@ -1,5 +1,5 @@
 baseURL = "https://mynewhugosite.com"
-title = "زاهي"
+title = "محمد"
 theme = "zahi"
 languageCode = "ar"
 defaultContentLanguage = "ar"
@@ -7,27 +7,12 @@ defaultContentLanguage = "ar"
 [taxonomies]
 tag = "tags"
 
-[menu]
-[[menu.main]]
-identifier = "الرئيسية"
-name = "الرئيسية"
-url = "/"
-weight = 10
-
-
-[[menu.main]]
-identifier = "المقالات"
-name = "المدونه"
-url = "/posts"
-weight = 10
-
-
 [params]
 github = "https://www.github.com/mohamedelhefni"
 mail = "mailto:mohamed.elhefni@outlook.com"
 site = "https://hefni101.netlify.app/"
 
-
 [services]
 [services.disqus]
 shortname = 'foobar'
+

@@ -1,12 +1,47 @@
 {{ partial "header.html" . }}
 
-<div class="flex flex-col gap-3 items-start justify-center h-full mt-20 md:mt-36 ">
-    <h1 class="text-2xl md:text-5xl font-black py-2"> {{.Title}} </h1>
-    {{ replace .Description "\n" "<br />" | safeHTML }}
-    {{ .Content }}
-    {{ partial "social.html" . }}
+<div class="pt-20 space-y-16">
+    <!-- Introduction Section -->
+    <section>
+        <div class="prose max-w-none text-stone-700 dark:text-stone-300">
+            <p class="text-lg leading-relaxed">
+                مرحباً بك في مدونتي الشخصية. هنا أشارك أفكاري وتجاربي في التصميم والتقنية والحياة. 
+                أؤمن بقوة البساطة وأن الأقل يمكن أن يكون أكثر تأثيراً وجمالاً.
+            </p>
+        </div>
+    </section>
 
-    {{ partial "home-pinned.html" . }}
+    <!-- Email Form -->
+    <section>
+        <script async data-uid="e32a8ba3ef" src="https://mohanmmed.kit.com/e32a8ba3ef/index.js"></script>
+    </section>
+
+    <!-- Divider -->
+    <div class="w-full h-px" style="background-color: #E6E4D9;"></div>
+
+    <!-- Writing Section -->
+    {{ $posts := where site.RegularPages "Type" "posts" }}
+    {{ if $posts }}
+    <section>
+        <h2 class="text-xl font-semibold mb-6 text-stone-600 dark:text-stone-300">الكتابة</h2>
+        <div class="space-y-3">
+            {{ range $posts }}
+            <article class="flex gap-4 items-baseline">
+                <time class="text-stone-500 dark:text-stone-400 text-sm font-mono whitespace-nowrap">
+                    {{ .Date.Format "02.01.2006" }}
+                </time>
+                <div class="flex-1">
+                    <h3 class="text-base font-normal leading-tight">
+                        <a href="{{ .RelPermalink }}" class="hover-custom transition-colors">
+                            {{ .Title }}
+                        </a>
+                    </h3>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
 </div>
 
 {{ partial "footer.html" . }}

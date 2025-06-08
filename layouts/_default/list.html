@@ -1,57 +1,80 @@
 {{ partial "header.html" . }}
 
-<div class="flex flex-col gap-2 my-3 mb-10 ">
-  <h1 class="font-black text-3xl md:text-4xl">{{ .Title }}</h1>
-  <p class="text-lg">{{ .Description }}</p>
-</div>
+<div class="py-16">
+    <header class="mb-16">
+        <h1 class="text-4xl font-bold mb-4 text-stone-900 dark:text-stone-100">{{ .Title }}</h1>
+        {{ if .Description }}
+        <p class="text-xl text-stone-600 dark:text-stone-400">{{ .Description }}</p>
+        {{ end }}
+    </header>
 
-{{- $pages := union .RegularPages .Sections }}
-{{- $paginator := .Paginate $pages }}
+    {{ .Content }}
 
-{{ .Content }}
-<div class="flex flex-col gap-6">
-  {{- range $index, $page := $paginator.Pages }}
-  <article dir="{{.Params.Direction}}" class="post-snippet flex flex-col [&:not(:last-child)]:border-b border-stone-400 pb-6">
-    {{ if .Params.Cover }}
-    <img src="{{ .Params.Cover }}" class="w-full h-64 object-cover rounded-md my-3" alt="{{.Title}}" loading="lazy">
-    {{ end }}
-    <time class="text-xs text-muted" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">
-      {{ .Date.Format "January 2, 2006" }}
-    </time>
-    <h2 class="font-semibold text-2xl my-1">
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
-    <p class="text-sm mb-3 text-stone-700 dark:text-white"> {{ .Description }} </p>
-    <div class="">
-      {{ partial "tags.html" . }}
+    {{- $pages := union .RegularPages .Sections }}
+    {{- $paginator := .Paginate $pages }}
+
+    {{ if $paginator.Pages }}
+    <div class="space-y-8">
+        {{- range $index, $page := $paginator.Pages }}
+        <article dir="{{.Params.Direction}}" class="pb-8 border-b border-stone-200 dark:border-stone-700 last:border-b-0">
+            {{ if .Params.Cover }}
+            <div class="mb-6">
+                <img src="{{ .Params.Cover }}" class="w-full h-64 object-cover rounded-lg" alt="{{.Title}}" loading="lazy">
+            </div>
+            {{ end }}
+            
+            <header class="mb-4">
+                <time class="text-stone-500 dark:text-stone-400 text-sm" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                    {{ .Date.Format "January 2, 2006" }}
+                </time>
+                <h2 class="text-2xl font-bold mt-2 mb-3 leading-tight">
+                    <a href="{{ .RelPermalink }}" class="text-stone-900 dark:text-stone-100 hover-custom transition-colors">
+                        {{ .Title }}
+                    </a>
+                </h2>
+                {{ if .Description }}
+                <p class="text-stone-700 dark:text-stone-300 leading-relaxed">
+                    {{ .Description }}
+                </p>
+                {{ end }}
+            </header>
+
+            {{ if .Params.tags }}
+            <footer class="mt-4">
+                <div class="flex flex-wrap gap-2">
+                    {{ range .Params.tags }}
+                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" 
+                       class="text-stone-600 dark:text-stone-400 hover-custom underline transition-colors text-sm">
+                        {{ . }}
+                    </a>
+                    {{ end }}
+                </div>
+            </footer>
+            {{ end }}
+        </article>
+        {{ end }}
     </div>
-  </article>
-  {{ end }}
+    {{ end }}
 
-
-</div>
-
-{{- if gt $paginator.TotalPages 1 }}
-<nav class="pagination w-full flex items-center justify-between">
-  {{- if $paginator.HasPrev }}
-  <a class="px-2 py-1 rounded dark:bg-white dark:text-black bg-stone-800 text-white" href="{{ $paginator.Prev.URL | absURL }}">
-    «&nbsp;{{ i18n "prev_page" }}&nbsp;
-    السابق
-    {{- if (.Param "ShowPageNums") }}
-    {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
+    {{- if gt $paginator.TotalPages 1 }}
+    <nav class="pagination mt-16 flex items-center justify-between">
+        {{- if $paginator.HasPrev }}
+        <a class="px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover-custom transition-colors" 
+           href="{{ $paginator.Prev.URL | absURL }}">
+            ← السابق
+        </a>
+        {{- else }}
+        <span></span>
+        {{- end }}
+        
+        {{- if $paginator.HasNext }}
+        <a class="px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover-custom transition-colors" 
+           href="{{ $paginator.Next.URL | absURL }}">
+            التالي →
+        </a>
+        {{- end }}
+    </nav>
     {{- end }}
-  </a>
-  {{- end }}
-  {{- if $paginator.HasNext }}
-  <a class="px-2 py-1 rounded dark:bg-white dark:text-black bg-stone-800 text-white" href="{{ $paginator.Next.URL | absURL }}">
-    التالي
-    {{- i18n "next_page" }}&nbsp;
-    {{- if (.Param "ShowPageNums") }}
-    {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
-    {{- end }}&nbsp;»
-  </a>
-  {{- end }}
-</nav>
-{{- end }}
+</div>
 
 {{ partial "footer.html" . }}
