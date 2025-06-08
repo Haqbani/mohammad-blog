@@ -2,10 +2,10 @@
 
 <article dir="{{.Params.Direction}}" class="py-16">
     <header class="mb-12">
-        <h1 class="text-4xl font-bold leading-tight mb-4 text-stone-900 dark:text-stone-100">
+        <h1 class="font-bold leading-tight mb-4 text-stone-900 dark:text-stone-100" style="font-size: 35px;">
             {{ .Title }}
         </h1>
-        <p class="text-stone-600 dark:text-stone-400 text-sm">
+        <p class="text-stone-600 dark:text-stone-400 text-xs">
             {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} minute read
         </p>
     </header>
@@ -18,7 +18,7 @@
 
     {{ partial "toc.html" . }}
 
-    <div class="prose prose-lg prose-stone dark:prose-invert max-w-none">
+    <div class="prose prose-stone dark:prose-invert max-w-none text-sm">
         {{ .Content }}
     </div>
 
@@ -36,20 +36,6 @@
     {{ end }}
 </article>
 
-{{ if .Site.Config.Services.Disqus.Shortname }}
-<div class="py-16 border-t border-stone-200 dark:border-stone-700">
-    <div id="disqus_thread"></div>
-    <script>
-        (function () {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://{{ .Site.Config.Services.Disqus.Shortname }}.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-</div>
-{{ end }}
+
 
 {{ partial "footer.html" . }}

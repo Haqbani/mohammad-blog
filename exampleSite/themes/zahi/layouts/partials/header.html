@@ -56,13 +56,100 @@
 			color: var(--hover-color) !important;
 		}
 
-		/* Kit Email Form - Minimal Styling */
-		.formkit-form .formkit-submit {
+		/* Kit Email Form - Two Column Horizontal Layout - High Specificity */
+		.formkit-form[data-uid="e32a8ba3ef"] {
+			max-width: 450px !important;
+			margin: 0 auto !important;
+		}
+
+		.formkit-form[data-uid="e32a8ba3ef"] .formkit-fields {
+			display: flex !important;
+			flex-direction: row !important;
+			align-items: stretch !important;
+			gap: 10px !important;
+			flex-wrap: nowrap !important;
+		}
+
+		.formkit-form[data-uid="e32a8ba3ef"] .formkit-field {
+			flex: 1 !important;
+			margin: 0 !important;
+			order: 1 !important;
+		}
+
+		.formkit-form[data-uid="e32a8ba3ef"] .formkit-input {
+			width: 100% !important;
+			padding: 8px 12px !important;
+			border: 1px solid #d6d3d1 !important;
+			border-radius: 5px !important;
+			font-size: 14px !important;
+			height: 36px !important;
+			box-sizing: border-box !important;
+		}
+
+		.formkit-form[data-uid="e32a8ba3ef"] .formkit-submit {
 			background-color: var(--hover-color) !important;
+			padding: 8px 16px !important;
+			border-radius: 5px !important;
+			font-size: 14px !important;
+			white-space: nowrap !important;
+			flex: 0 0 auto !important;
+			min-width: 90px !important;
+			height: 36px !important;
+			box-sizing: border-box !important;
+			border: none !important;
+			cursor: pointer !important;
+			order: 2 !important;
+		}
+
+		/* Fallback with even higher specificity */
+		.formkit-form .formkit-fields .formkit-submit {
+			order: 2 !important;
+		}
+
+		.formkit-form .formkit-fields .formkit-field {
+			order: 1 !important;
 		}
 
 		.formkit-form .formkit-submit:hover {
 			background-color: #2d9088 !important;
+		}
+
+		.dark .formkit-form .formkit-input {
+			background-color: #1c1917 !important;
+			border-color: #44403c !important;
+			color: var(--text-dark) !important;
+		}
+
+		.dark .formkit-form .formkit-input:focus {
+			border-color: var(--hover-color) !important;
+			outline: none !important;
+		}
+
+		.formkit-form .formkit-input:focus {
+			border-color: var(--hover-color) !important;
+			outline: none !important;
+		}
+
+		/* Reduce blog post content font size */
+		.prose.text-sm p {
+			font-size: 14px !important;
+			line-height: 1.6 !important;
+		}
+		
+		.prose.text-sm h2 {
+			font-size: 20px !important;
+		}
+		
+		.prose.text-sm h3 {
+			font-size: 18px !important;
+		}
+		
+		.prose.text-sm h4 {
+			font-size: 16px !important;
+		}
+		
+		.prose.text-sm li {
+			font-size: 14px !important;
 		}
 	</style>
 

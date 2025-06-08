@@ -4,9 +4,8 @@
     <!-- Introduction Section -->
     <section>
         <div class="prose max-w-none text-stone-700 dark:text-stone-300">
-            <p class="text-lg leading-relaxed">
-                مرحباً بك في مدونتي الشخصية. هنا أشارك أفكاري وتجاربي في التصميم والتقنية والحياة. 
-                أؤمن بقوة البساطة وأن الأقل يمكن أن يكون أكثر تأثيراً وجمالاً.
+            <p class="text-base leading-relaxed">
+                هلا والله، أنا محمد. سويت هالمدونه علشان أشارككم اللي أتعلمه في رحلتي. عندي شغف كبير بمواضيع مثل الذكاء الاصطناعي وحل المشاكل والاستراتيجية، وعندي خبرة طويلة في تطوير المؤسسات والتعويضات والمزايا. أؤمن إن البساطة هي المفتاح، فكل شي تلقونه هنا ينبع من فلسفتي في البساطة. إذا عجبكم اللي تقرأونه، اشتركوا في النشرة تحت عشان ما يفوتكم أي جديد.
             </p>
         </div>
     </section>
@@ -14,6 +13,36 @@
     <!-- Email Form -->
     <section>
         <script async data-uid="e32a8ba3ef" src="https://mohanmmed.kit.com/e32a8ba3ef/index.js"></script>
+        <style>
+            /* Force email form layout - inline to override Kit */
+            .formkit-form[data-uid="e32a8ba3ef"] .formkit-fields {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: stretch !important;
+                gap: 10px !important;
+                flex-wrap: nowrap !important;
+            }
+            
+            .formkit-form[data-uid="e32a8ba3ef"] .formkit-field {
+                flex: 1 !important;
+                margin: 0 !important;
+                order: 1 !important;
+            }
+            
+            .formkit-form[data-uid="e32a8ba3ef"] .formkit-submit {
+                flex: 0 0 auto !important;
+                order: 2 !important;
+                min-width: 90px !important;
+                height: 36px !important;
+                background-color: #3AA89E !important;
+            }
+            
+            .formkit-form[data-uid="e32a8ba3ef"] .formkit-input {
+                height: 36px !important;
+                padding: 8px 12px !important;
+                border-radius: 5px !important;
+            }
+        </style>
     </section>
 
     <!-- Divider -->
@@ -27,11 +56,11 @@
         <div class="space-y-3">
             {{ range $posts }}
             <article class="flex gap-4 items-baseline">
-                <time class="text-stone-500 dark:text-stone-400 text-sm font-mono whitespace-nowrap">
+                <time class="text-stone-500 dark:text-stone-400 text-xs font-mono whitespace-nowrap">
                     {{ .Date.Format "02.01.2006" }}
                 </time>
                 <div class="flex-1">
-                    <h3 class="text-base font-normal leading-tight">
+                    <h3 class="text-sm font-normal leading-tight">
                         <a href="{{ .RelPermalink }}" class="hover-custom transition-colors">
                             {{ .Title }}
                         </a>
